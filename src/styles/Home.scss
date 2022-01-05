@@ -1,0 +1,59 @@
+.Home {
+    text-align: center;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*font-size: calc(10px + 2vmin);*/
+    color: white;
+}
+
+body {
+    background-color: #282c34;
+}
+
+.Outer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /*background: darkred;*/
+}
+
+h2 {
+    margin: 0.5rem 0;
+}
+
+p {
+    margin: 0;
+    font-size: 125%;
+}
+
+.Inner {
+    display: flex;
+    gap: 1rem;
+    flex-flow: row wrap;
+    width: 90%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.Item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 25rem;
+    height: 6rem;
+    background: #1c1e20;
+}
+
+.ItemActions {
+    display: flex;
+    margin: 0.5rem 0;
+    width: 80%;
+    justify-content: space-evenly;
+}
