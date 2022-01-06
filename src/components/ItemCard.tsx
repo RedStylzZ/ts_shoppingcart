@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
-import {addItemsFunc, removeItemsFunc} from "./Items";
-import {IItem} from "../Models/ShoppingItems";
+import {addItemsFunc, IItem, removeItemsFunc} from "../models/ShoppingItems";
 
 interface ItemCardProps {
     item: IItem

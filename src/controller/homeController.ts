@@ -1,4 +1,4 @@
-import {IItems} from "../Models/ShoppingItems";
+import {IItems} from "../models/ShoppingItems";
 
 export interface IHomeController {
     getItems: () => IItems,

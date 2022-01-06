@@ -2,8 +2,7 @@ import React, {FormEvent, useState} from "react";
 import Items from "../components/Items";
 import './Home.scss';
 import {IHomeController} from "../controller/homeController";
-import {IItem, IItems} from "../Models/ShoppingItems";
-
+import {IItem, IItems} from "../models/ShoppingItems";
 
 export default function Home(props: { controller: IHomeController }) {
     const {controller} = props
@@ -11,7 +10,6 @@ export default function Home(props: { controller: IHomeController }) {
 
     // : React.FormEventHandler<HTMLFormElement>
     const addItem = (event: FormEvent<HTMLFormElement> | IItem) => {
-        console.log("Meep")
         if (Array.isArray(event)) {
             setItems(controller.addItem(event[0]))
         } else {
