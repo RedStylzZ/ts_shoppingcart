@@ -1,20 +1,18 @@
-interface Items {
-    [n: string]: number
-}
+import {IItems} from "../Models/ShoppingItems";
 
 export interface IHomeController {
-    getItems: () => Items,
-    addItems: (newItem: string) => Items,
-    removeItem: (item: string) => Items,
-    changeItem: (oldName: string, newName: string) => Items
+    getItems: () => IItems,
+    addItem: (newItem: string) => IItems,
+    removeItem: (item: string) => IItems,
+    changeItem: (oldName: string, newName: string) => IItems
 }
 
 export default function homeController(): IHomeController {
     const STORAGE_KEY: string = 'ts_shopping_cart'
     const re: RegExp = new RegExp(/\s/g)
-    let items: Items = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
+    let items: IItems = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
 
-    const setItems = (value: Items) => {
+    const setItems = (value: IItems) => {
         items = value
         localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
     }
@@ -24,24 +22,24 @@ export default function homeController(): IHomeController {
     }
 
     return {
-        getItems: (): Items => items,
-        addItems: (newItem: string): Items => {
+        getItems: (): IItems => ({...items}),
+        addItem: (newItem: string): IItems => {
             if (isValidName(newItem)) {
-                const temp: Items = {...items}
+                const temp: IItems = {...items}
                 temp[newItem] = temp[newItem] ? temp[newItem] + 1 : 1
                 setItems(temp)
             }
             return {...items}
         },
-        removeItem: (item: string): Items => {
-            const temp: Items = {...items}
+        removeItem: (item: string): IItems => {
+            const temp: IItems = {...items}
             temp[item] <= 1 ? delete temp[item] : temp[item]--
             setItems(temp)
             return {...items}
         },
-        changeItem: (oldName: string, newName: string): Items => {
+        changeItem: (oldName: string, newName: string): IItems => {
             if (isValidName(newName) && !(newName === oldName)) {
-                const temp = {...items}
+                const temp: IItems = {...items}
                 temp[newName] = temp[oldName]
                 delete temp[oldName]
                 setItems(temp)
