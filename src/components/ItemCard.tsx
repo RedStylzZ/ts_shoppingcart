@@ -14,11 +14,14 @@ export default function ItemCard(props: ItemCardProps) {
         <div className={"Item"}>
             <h2>{name}</h2>
             <div className={"ItemActions"}>
-                <input type={"button"} value={"Add"} onClick={() => {
+                <input type={"button"} value={"Add"} id={"add"} onClick={() => {
                     add(item)
                 }}/>
-                <input type={"button"} value={"Remove"} onClick={() => {
-                    remove(item)
+                <input type={"button"} value={"Remove"} id={"remove"} onClick={() => {
+                    remove(item, false)
+                }}/>
+                <input type={"button"} value={"Remove All"} id={"removeAll"} onClick={() => {
+                    remove(item, true)
                 }}/>
                 <Link to={`/change/${item[0]}`}>
                     <input type={"button"} value={"Change"}/>

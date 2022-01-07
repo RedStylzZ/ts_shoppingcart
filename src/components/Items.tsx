@@ -9,7 +9,8 @@ const mapItemToCards: (item: IItem, index: number, add: addItemsFunc, remove: re
 export default function Items(props: ItemsProps) {
     return (
         <>
-            {Object.entries(props.items!)
+            {
+                Object.entries(props.items!)
                 .map((item, index) => mapItemToCards(item, index, props.add, props.remove))
             }
         </>

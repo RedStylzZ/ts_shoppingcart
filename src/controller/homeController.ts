@@ -3,7 +3,7 @@ import {IItems} from "../models/ShoppingItems";
 export interface IHomeController {
     getItems: () => IItems,
     addItem: (newItem: string) => IItems,
-    removeItem: (item: string) => IItems,
+    removeItem: (item: string, count: boolean) => IItems,
     changeItem: (oldName: string, newName: string) => IItems
 }
 
@@ -31,9 +31,9 @@ export default function homeController(): IHomeController {
             }
             return {...items}
         },
-        removeItem: (item: string): IItems => {
+        removeItem: (item: string, wholeItem: boolean): IItems => {
             const temp: IItems = {...items}
-            temp[item] <= 1 ? delete temp[item] : temp[item]--
+            temp[item] <= 1 || wholeItem ? delete temp[item] : temp[item]--
             setItems(temp)
             return {...items}
         },
