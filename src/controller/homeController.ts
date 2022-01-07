@@ -2,7 +2,7 @@ import {IItems} from "../models/ShoppingItems";
 
 export interface IHomeController {
     getItems: () => IItems,
-    addItem: (newItem: string) => IItems,
+    addItem: (newItem: string, quantity: number) => IItems,
     removeItem: (item: string, count: boolean) => IItems,
     changeItem: (oldName: string, newName: string) => IItems
 }
@@ -23,21 +23,21 @@ export default function homeController(): IHomeController {
 
     return {
         getItems: (): IItems => ({...items}),
-        addItem: (newItem: string): IItems => {
+        addItem: (newItem, quantity): IItems => {
             if (isValidName(newItem)) {
                 const temp: IItems = {...items}
-                temp[newItem] = temp[newItem] ? temp[newItem] + 1 : 1
+                temp[newItem] = ((temp[newItem] ? temp[newItem] : 0) + parseInt(String(quantity)))
                 setItems(temp)
             }
             return {...items}
         },
-        removeItem: (item: string, wholeItem: boolean): IItems => {
+        removeItem: (item, wholeItem): IItems => {
             const temp: IItems = {...items}
             temp[item] <= 1 || wholeItem ? delete temp[item] : temp[item]--
             setItems(temp)
             return {...items}
         },
-        changeItem: (oldName: string, newName: string): IItems => {
+        changeItem: (oldName, newName): IItems => {
             if (isValidName(newName) && !(newName === oldName)) {
                 const temp: IItems = {...items}
                 temp[newName] = temp[oldName]

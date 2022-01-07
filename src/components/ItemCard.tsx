@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import {addItemsFunc, IItem, removeItemsFunc} from "../models/ShoppingItems";
+import './ItemCard.scss'
 
 interface ItemCardProps {
     item: IItem
