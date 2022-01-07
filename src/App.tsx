@@ -3,20 +3,24 @@ import './App.scss';
 import Home from './pages/Home'
 import NavBar from './components/NavBar';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Change from "./pages/Change";
+import ChangeItem from "./pages/ChangeItem";
 import homeController from "./controller/homeController";
-import {IHomeController} from "./models/ShoppingItems";
+import {IAccountController, IHomeController} from "./models/ShoppingItems";
+import ListsPage from './pages/ListsPage';
+import listController from "./controller/listController";
 
 export default function App() {
-    const controller: IHomeController = homeController()
+    const hController: IHomeController = homeController()
+    const aController: IAccountController = listController()
 
     return (
         <div className="App">
             <BrowserRouter>
-                <NavBar />
+                <NavBar/>
                 <Routes>
-                    <Route path={"/"} element={<Home controller={controller}/>}/>
-                    <Route path={"/changeItem/:name"} element={<Change controller={controller}/>}/>
+                    <Route path={"/"} element={<Home controller={hController}/>}/>
+                    <Route path={"/changeItem/:name"} element={<ChangeItem controller={hController}/>}/>
+                    <Route path={"/accounts/"} element={<ListsPage controller={aController}/>}/>
                 </Routes>
             </BrowserRouter>
         </div>

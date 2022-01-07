@@ -46,7 +46,7 @@ export default function Home(props: { controller: IHomeController }) {
         <div className={"Home"}>
             <h1>Einkaufsliste</h1>
             <form onSubmit={addItem}>
-                <input type={"textarea"} placeholder={"1"} onChange={quantityHandler} value={quantityState} id={"quantityInput"}/>
+                <input type={"number"} placeholder={"1"} onChange={quantityHandler} value={quantityState} id={"quantityInput"}/>
                 <input type={"textarea"} id={"textInput"}/>
                 <input type={"submit"} value={"Senden"}/>
             </form>

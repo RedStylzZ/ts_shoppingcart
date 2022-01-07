@@ -2,7 +2,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import React from "react";
 import {IHomeController} from "../models/ShoppingItems";
 
-export default function Change(props: {controller: IHomeController}) {
+export default function ChangeItem(props: {controller: IHomeController}) {
     const {controller} = props
     const params = useParams()
     const navigate = useNavigate()

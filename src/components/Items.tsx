@@ -11,7 +11,7 @@ export default function Items(props: ItemsProps) {
         <>
             {
                 Object.entries(props.items!)
-                .map((item, index) => mapItemToCards(item, index, props.add, props.remove))
+                    .map((item, index) => mapItemToCards(item, index, props.add, props.remove))
             }
         </>
     )

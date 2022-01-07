@@ -1,13 +1,15 @@
 import {IHomeController, IItems} from "../models/ShoppingItems";
+import listController from "./listController";
 
 export default function homeController(): IHomeController {
-    const STORAGE_KEY: string = 'ts_shopping_cart'
     const re: RegExp = new RegExp(/\s/g)
-    let items: IItems = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
+    const aController = listController()
+    let account: string = "Tizian"
+    let items: IItems = aController.getAccountItems(account) || {}
 
     const setItems = (value: IItems) => {
         items = value
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
+        aController.setAccountItems(account, value)
     }
 
     const isValidName = (value: string): boolean => {

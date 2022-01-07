@@ -24,8 +24,8 @@ export default function ItemCard(props: ItemCardProps) {
                 <input type={"button"} value={"Remove All"} id={"removeAll"} onClick={() => {
                     remove(item, true)
                 }}/>
-                <Link to={`/change/${item[0]}`}>
-                    <input type={"button"} value={"Change"}/>
+                <Link to={`/changeItem/${item[0]}`}>
+                    <input type={"button"} value={"ChangeItem"}/>
                 </Link>
             </div>
         </div>
