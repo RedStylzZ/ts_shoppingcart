@@ -16,7 +16,7 @@ export default function App() {
                 <NavBar />
                 <Routes>
                     <Route path={"/"} element={<Home controller={controller}/>}/>
-                    <Route path={"/change/:name"} element={<Change controller={controller}/>}/>
+                    <Route path={"/changeItem/:name"} element={<Change controller={controller}/>}/>
                 </Routes>
             </BrowserRouter>
         </div>
