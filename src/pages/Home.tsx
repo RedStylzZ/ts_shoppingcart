@@ -1,8 +1,7 @@
 import React, {ChangeEvent, FormEvent, useState} from "react";
 import Items from "../components/Items";
 import './Home.scss';
-import {IHomeController} from "../controller/homeController";
-import {IItem, IItems} from "../models/ShoppingItems";
+import {IHomeController, IItem, IItems} from "../models/ShoppingItems";
 
 interface ITextInput {
     quantityInput: {value: string}

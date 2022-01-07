@@ -10,3 +10,10 @@ export interface ItemsProps {
     add: addItemsFunc,
     remove: removeItemsFunc
 }
+
+export interface IHomeController {
+    getItems: () => IItems,
+    addItem: (newItem: string, quantity: number) => IItems,
+    removeItem: (item: string, count: boolean) => IItems,
+    changeItem: (oldName: string, newName: string) => IItems
+}

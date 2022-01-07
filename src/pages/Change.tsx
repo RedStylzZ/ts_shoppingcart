@@ -1,6 +1,6 @@
-import {IHomeController} from "../controller/homeController";
 import {useNavigate, useParams} from "react-router-dom";
 import React from "react";
+import {IHomeController} from "../models/ShoppingItems";
 
 export default function Change(props: {controller: IHomeController}) {
     const {controller} = props

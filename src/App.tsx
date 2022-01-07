@@ -4,7 +4,8 @@ import Home from './pages/Home'
 import NavBar from './components/NavBar';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Change from "./pages/Change";
-import homeController, {IHomeController} from "./controller/homeController";
+import homeController from "./controller/homeController";
+import {IHomeController} from "./models/ShoppingItems";
 
 export default function App() {
     const controller: IHomeController = homeController()

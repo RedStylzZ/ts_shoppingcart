@@ -1,11 +1,4 @@
-import {IItems} from "../models/ShoppingItems";
-
-export interface IHomeController {
-    getItems: () => IItems,
-    addItem: (newItem: string, quantity: number) => IItems,
-    removeItem: (item: string, count: boolean) => IItems,
-    changeItem: (oldName: string, newName: string) => IItems
-}
+import {IHomeController, IItems} from "../models/ShoppingItems";
 
 export default function homeController(): IHomeController {
     const STORAGE_KEY: string = 'ts_shopping_cart'
