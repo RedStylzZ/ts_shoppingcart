@@ -19,10 +19,10 @@ export interface IHomeController {
     changeItem: (oldName: string, newName: string) => IItems
 }
 
-export interface IAccounts {[n: string]: IItems}
-export interface IAccountController {
-    getAccountItems: (account: string) => IItems,
-    setAccountItems: (account: string, items: IItems) => IItems,
-    getAccounts: () => IAccounts
-    addAccount: (name: string) => IAccounts
+export interface ILists {[n: string]: IItems}
+export interface IListController {
+    getListItems: (list: string) => IItems,
+    setListItems: (list: string, items: IItems) => IItems,
+    getLists: () => ILists
+    addList: (name: string) => ILists
 }

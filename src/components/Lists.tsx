@@ -1,17 +1,13 @@
-import {IAccounts} from "../models/ShoppingItems";
+import {ILists} from "../models/ShoppingItems";
 import ListCard from "./ListCard";
 
-// export interface IAccounts {
-//     accounts: IAccounts
-// }
-
-export default function Lists(props: {accounts: IAccounts }) {
+export default function Lists(props: {lists: ILists }) {
     return (
         <>
             {
-                Object.entries(props.accounts)
-                    .map((account, index) =>
-                        <ListCard account={account} key={index}/>
+                Object.entries(props.lists)
+                    .map((list, index) =>
+                        <ListCard list={list} key={index}/>
                     )
             }
         </>

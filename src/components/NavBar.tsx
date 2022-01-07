@@ -7,7 +7,7 @@ export default function NavBar() {
             <Link to={"/"}>
                 <input type="button" value={"Home"}/>
             </Link>
-            <Link to={"/accounts"}>
+            <Link to={"/lists"}>
                 <input type="button" value={"ListsPage"}/>
             </Link>
         </div>

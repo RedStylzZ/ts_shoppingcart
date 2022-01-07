@@ -3,13 +3,13 @@ import listController from "./listController";
 
 export default function homeController(): IHomeController {
     const re: RegExp = new RegExp(/\s/g)
-    const aController = listController()
-    let account: string = "Tizian"
-    let items: IItems = aController.getAccountItems(account) || {}
+    const lController = listController()
+    let list: string = "Tizian"
+    let items: IItems = lController.getListItems(list) || {}
 
     const setItems = (value: IItems) => {
         items = value
-        aController.setAccountItems(account, value)
+        lController.setListItems(list, value)
     }
 
     const isValidName = (value: string): boolean => {

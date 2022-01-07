@@ -2,18 +2,18 @@ import { Link } from "react-router-dom";
 import {IItems} from "../models/ShoppingItems";
 import './ListCard.scss'
 
-type IAccount = [string, IItems]
+type IList = [string, IItems]
 
-interface IAccountCard {
-    account: IAccount
+interface IListCard {
+    list: IList
 }
 
-export default function ListCard(props: IAccountCard) {
-    const {account} = props
+export default function ListCard(props: IListCard) {
+    const {list} = props
     return (
-        <Link to={`/${account[0]}`}>
-            <div className={"accountCard"}>
-                <h1>{account[0]}</h1>
+        <Link to={`/${list[0]}`}>
+            <div className={"listCard"}>
+                <h1>{list[0]}</h1>
             </div>
         </Link>
     )

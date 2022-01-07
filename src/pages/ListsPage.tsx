@@ -1,29 +1,29 @@
-import {IAccountController, IAccounts} from "../models/ShoppingItems";
+import {IListController, ILists} from "../models/ShoppingItems";
 import {FormEventHandler, useState} from "react";
 import Lists from "../components/Lists";
 import './ListsPage.scss'
 
-export default function ListsPage(props: {controller: IAccountController}) {
+export default function ListsPage(props: {controller: IListController}) {
     const {controller} = props
-    const [accounts, setAccounts] = useState<IAccounts>(controller.getAccounts())
+    const [lists, setLists] = useState<ILists>(controller.getLists())
 
-    const addAccount: FormEventHandler<HTMLFormElement> = (event) => {
+    const addList: FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault()
         // @ts-ignore
-        setAccounts(controller.addAccount(event.currentTarget.elements[0].value));
+        setLists(controller.addList(event.currentTarget.elements[0].value));
         // @ts-ignore
         event.currentTarget.elements[0].value = ""
-        console.log(accounts)
+        console.log(lists)
     }
 
     return (
-        <div className={"accounts"}>
-            <form onSubmit={addAccount}>
+        <div className={"lists"}>
+            <form onSubmit={addList}>
                 <input type={"text"}/>
                 <input type={"submit"} value={"Submit"}/>
             </form>
             <div className={"Outer"}>
-                <Lists accounts={accounts}/>
+                <Lists lists={lists}/>
             </div>
         </div>
     )

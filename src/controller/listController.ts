@@ -1,28 +1,28 @@
-import {IAccounts, IItems, STORAGE_KEY} from "../models/ShoppingItems";
+import {ILists, IItems, STORAGE_KEY} from "../models/ShoppingItems";
 
 
 export default function listController() {
-    let accountItems: IAccounts = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
+    let listItems: ILists = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
 
-    const setAccount = (value: IAccounts) => {
-        accountItems = value
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(accountItems))
+    const setList = (value: ILists) => {
+        listItems = value
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(listItems))
     }
 
     return {
-        getAccounts: () => ({...accountItems}),
-        getAccountItems: (account: string) => ({...accountItems[account]}),
-        setAccountItems: (account: string, items: IItems) => {
-            const temp = {...accountItems}
-            temp[account] = items
-            setAccount(temp)
-            return {...accountItems[account]}
+        getLists: () => ({...listItems}),
+        getListItems: (list: string) => ({...listItems[list]}),
+        setListItems: (list: string, items: IItems) => {
+            const temp = {...listItems}
+            temp[list] = items
+            setList(temp)
+            return {...listItems[list]}
         },
-        addAccount: (name: string): IAccounts => {
-            const temp = {...accountItems}
+        addList: (name: string): ILists => {
+            const temp = {...listItems}
             temp[name] = {}
-            setAccount(temp)
-            return {...accountItems}
+            setList(temp)
+            return {...listItems}
         }
     }
 }
