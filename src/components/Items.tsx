@@ -1,9 +1,21 @@
 import ItemCard from "./ItemCard";
-import {addItemsFunc, IItem, ItemsProps, removeItemsFunc} from "../models/ShoppingItems";
+import {addItemsFunc, changeItemFunc, IItem, ItemsProps, removeItemsFunc} from "../models/ShoppingItems";
 
-const mapItemToCards: (item: IItem, index: number, add: addItemsFunc, remove: removeItemsFunc) => JSX.Element =
-    (item, index, add, remove) => {
-        return <ItemCard item={item} key={index} add={add} remove={remove}/>
+// interface IMapToCards {
+//     item: IItem
+//     index: number
+//     add: addItemsFunc
+//     remove: removeItemsFunc
+//     change: changeItemFunc
+// }
+
+const mapItemToCards: (item: IItem,
+                       index: number,
+                       add: addItemsFunc,
+                       remove: removeItemsFunc,
+                       change: changeItemFunc) => JSX.Element =
+    (item, index, add, remove, change) => {
+        return <ItemCard item={item} key={index} add={add} remove={remove} change={change}/>
     }
 
 export default function Items(props: ItemsProps) {
@@ -11,7 +23,7 @@ export default function Items(props: ItemsProps) {
         <>
             {
                 Object.entries(props.items!)
-                    .map((item, index) => mapItemToCards(item, index, props.add, props.remove))
+                    .map((item, index) => mapItemToCards(item, index, props.add, props.remove, props.change))
             }
         </>
     )

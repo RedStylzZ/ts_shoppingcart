@@ -5,10 +5,7 @@ export default function NavBar() {
     return (
         <div>
             <Link to={"/"}>
-                <input type="button" value={"Home"}/>
-            </Link>
-            <Link to={"/lists"}>
-                <input type="button" value={"ListsPage"}/>
+                <input type="button" value={"Lists"}/>
             </Link>
         </div>
     )

@@ -10,17 +10,17 @@ import ListsPage from './pages/ListsPage';
 import listController from "./controller/listController";
 
 export default function App() {
-    const hController: IHomeController = homeController()
-    const lController: IListController = listController()
+    const _listController: IListController = listController()
+    const _homeController: IHomeController = homeController(_listController)
 
     return (
         <div className="App">
             <BrowserRouter>
                 <NavBar/>
                 <Routes>
-                    <Route path={"/"} element={<Home controller={hController}/>}/>
-                    <Route path={"/changeItem/:name"} element={<ChangeItem controller={hController}/>}/>
-                    <Route path={"/lists/"} element={<ListsPage controller={lController}/>}/>
+                    <Route path={"/"} element={<ListsPage controller={_listController}/>}/>
+                    <Route path={"/lists/:name"} element={<Home controller={_homeController}/>}/>
+                    <Route path={"/changeItem/:listName/:name"} element={<ChangeItem controller={_homeController}/>}/>
                 </Routes>
             </BrowserRouter>
         </div>

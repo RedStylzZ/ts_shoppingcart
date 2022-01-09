@@ -2,37 +2,41 @@ import React, {ChangeEvent, FormEvent, useState} from "react";
 import Items from "../components/Items";
 import './Home.scss';
 import {IHomeController, IItem, IItems} from "../models/ShoppingItems";
+import {useNavigate, useParams} from "react-router-dom";
 
 interface ITextInput {
-    quantityInput: {value: string}
-    textInput: {value:string}
+    quantityInput: { value: string }
+    textInput: { value: string }
 }
 
 export default function Home(props: { controller: IHomeController }) {
     const {controller} = props
-    const [items, setItems] = useState<IItems>(controller.getItems())
+    const params = useParams()
+    const listName: string = params.name!
+    const navigate = useNavigate()
+    const [items, setItems] = useState<IItems>(controller.getItems(listName))
     const [quantityState, setQuantityState] = useState<number>(1)
 
     // : React.FormEventHandler<HTMLFormElement>
     const addItem = (event: FormEvent<HTMLFormElement> | IItem) => {
         // Jump in when button "Add" is being pressed
         if (Array.isArray(event)) {
-            setItems(controller.addItem(event[0], 1))
-        // Jump in when Item is being added via form
+            setItems(controller.addItem(listName, event[0], 1))
+            // Jump in when Item is being added via form
         } else {
             event.preventDefault()
             const form = event.currentTarget
             const formElements = form.elements as typeof form.elements & ITextInput
             const textInputValue: string = formElements.textInput.value
             // const quantityInputValue: number = formElements.quantityInput.value as unknown as number
-            textInputValue.length > 100 ? alert("Maximum 100 characters allowed") : setItems(controller.addItem(textInputValue, quantityState))
+            textInputValue.length > 100 ? alert("Maximum 100 characters allowed") : setItems(controller.addItem(listName, textInputValue, quantityState))
             // @ts-ignore
             event.currentTarget.elements.textInput.value = ""
         }
     }
 
     const removeItem = (item: IItem, wholeItem: boolean) => {
-        setItems(controller.removeItem(item[0], wholeItem))
+        setItems(controller.removeItem(listName, item[0], wholeItem))
     }
 
     const quantityHandler = (event: ChangeEvent) => {
@@ -42,17 +46,23 @@ export default function Home(props: { controller: IHomeController }) {
         setQuantityState(re.test(event.target.value) ? event.target.value : quantityState)
     }
 
+    const changeItem = (itemName: string) => {
+        navigate(`/changeItem/${listName}/${itemName}`)
+    }
+
     return (
         <div className={"Home"}>
             <h1>Einkaufsliste</h1>
+            <h2>{listName}</h2>
             <form onSubmit={addItem}>
-                <input type={"number"} placeholder={"1"} onChange={quantityHandler} value={quantityState} id={"quantityInput"}/>
+                <input type={"number"} placeholder={"1"} onChange={quantityHandler} value={quantityState}
+                       id={"quantityInput"}/>
                 <input type={"textarea"} id={"textInput"}/>
                 <input type={"submit"} value={"Senden"}/>
             </form>
             <div className={"Outer"}>
                 {/*<div className={"Inner"}>*/}
-                    <Items items={items} add={addItem} remove={removeItem}/>
+                <Items items={items} add={addItem} remove={removeItem} change={changeItem}/>
                 {/*</div>*/}
             </div>
         </div>

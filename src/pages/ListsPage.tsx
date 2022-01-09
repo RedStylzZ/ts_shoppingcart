@@ -3,7 +3,7 @@ import {FormEventHandler, useState} from "react";
 import Lists from "../components/Lists";
 import './ListsPage.scss'
 
-export default function ListsPage(props: {controller: IListController}) {
+export default function ListsPage(props: { controller: IListController }) {
     const {controller} = props
     const [lists, setLists] = useState<ILists>(controller.getLists())
 
@@ -16,6 +16,10 @@ export default function ListsPage(props: {controller: IListController}) {
         console.log(lists)
     }
 
+    const removeList = (listName: string) => {
+        setLists(controller.removeList(listName))
+    }
+
     return (
         <div className={"lists"}>
             <form onSubmit={addList}>
@@ -23,7 +27,7 @@ export default function ListsPage(props: {controller: IListController}) {
                 <input type={"submit"} value={"Submit"}/>
             </form>
             <div className={"Outer"}>
-                <Lists lists={lists}/>
+                <Lists lists={lists} removeList={removeList}/>
             </div>
         </div>
     )
