@@ -51,7 +51,7 @@ export default function ItemsPage(props: { controller: IItemController }) {
     }
 
     return (
-        <div className={"Item"}>
+        <div className={"ItemsPage"}>
             <h1>Einkaufsliste</h1>
             <h2>{listName}</h2>
             <form onSubmit={addItem}>
