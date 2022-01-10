@@ -1,26 +1,26 @@
 import React from 'react';
 import './App.scss';
-import Home from './pages/Home'
+import ItemsPage from './pages/ItemsPage'
 import NavBar from './components/NavBar';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import ChangeItem from "./pages/ChangeItem";
-import homeController from "./controller/homeController";
-import {IListController, IHomeController} from "./models/ShoppingItems";
+import ItemController from "./controller/ItemController";
+import {IListController, IItemController} from "./models/ShoppingItems";
 import ListsPage from './pages/ListsPage';
-import listController from "./controller/listController";
+import ListController from "./controller/ListController";
 
 export default function App() {
-    const _listController: IListController = listController()
-    const _homeController: IHomeController = homeController(_listController)
+    const listController: IListController = ListController()
+    const itemController: IItemController = ItemController(listController)
 
     return (
         <div className="App">
             <BrowserRouter>
                 <NavBar/>
                 <Routes>
-                    <Route path={"/"} element={<ListsPage controller={_listController}/>}/>
-                    <Route path={"/lists/:name"} element={<Home controller={_homeController}/>}/>
-                    <Route path={"/changeItem/:listName/:name"} element={<ChangeItem controller={_homeController}/>}/>
+                    <Route path={"/"} element={<ListsPage controller={listController}/>}/>
+                    <Route path={"/lists/:name"} element={<ItemsPage controller={itemController}/>}/>
+                    <Route path={"/changeItem/:listName/:name"} element={<ChangeItem controller={itemController}/>}/>
                 </Routes>
             </BrowserRouter>
         </div>

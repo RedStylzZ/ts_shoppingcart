@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FormEvent, useState} from "react";
 import Items from "../components/Items";
-import './Home.scss';
-import {IHomeController, IItem, IItems} from "../models/ShoppingItems";
+import './ItemsPage.scss';
+import {IItemController, IItem, IItems} from "../models/ShoppingItems";
 import {useNavigate, useParams} from "react-router-dom";
 
 interface ITextInput {
@@ -9,7 +9,7 @@ interface ITextInput {
     textInput: { value: string }
 }
 
-export default function Home(props: { controller: IHomeController }) {
+export default function ItemsPage(props: { controller: IItemController }) {
     const {controller} = props
     const params = useParams()
     const listName: string = params.name!
@@ -51,7 +51,7 @@ export default function Home(props: { controller: IHomeController }) {
     }
 
     return (
-        <div className={"Home"}>
+        <div className={"Item"}>
             <h1>Einkaufsliste</h1>
             <h2>{listName}</h2>
             <form onSubmit={addItem}>

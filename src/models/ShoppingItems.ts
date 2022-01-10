@@ -15,7 +15,7 @@ export interface ItemsProps {
     change: changeItemFunc
 }
 
-export interface IHomeController {
+export interface IItemController {
     getItems: (listName: string) => IItems,
     addItem: (listName: string, newItem: string, quantity: number) => IItems,
     removeItem: (listName: string, item: string, count: boolean) => IItems,
