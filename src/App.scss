@@ -14,3 +14,13 @@
 body {
   background-color: #282c34;
 }
+
+.Outer {
+  display: flex;
+  gap: 1rem;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  /*background: darkred;*/
+}

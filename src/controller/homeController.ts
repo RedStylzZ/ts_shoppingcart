@@ -1,20 +1,11 @@
-import {IItems} from "../models/ShoppingItems";
+import {IHomeController, IItems, IListController} from "../models/ShoppingItems";
 
-export interface IHomeController {
-    getItems: () => IItems,
-    addItem: (newItem: string, quantity: number) => IItems,
-    removeItem: (item: string, count: boolean) => IItems,
-    changeItem: (oldName: string, newName: string) => IItems
-}
-
-export default function homeController(): IHomeController {
-    const STORAGE_KEY: string = 'ts_shopping_cart'
+export default function homeController(props: IListController): IHomeController {
     const re: RegExp = new RegExp(/\s/g)
-    let items: IItems = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
+    const listController = props
 
-    const setItems = (value: IItems) => {
-        items = value
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
+    const setItems = (value: IItems, listName: string) => {
+        listController.setListItems(listName, value)
     }
 
     const isValidName = (value: string): boolean => {
@@ -22,29 +13,29 @@ export default function homeController(): IHomeController {
     }
 
     return {
-        getItems: (): IItems => ({...items}),
-        addItem: (newItem, quantity): IItems => {
+        getItems: (listName): IItems => ({...listController.getListItems(listName)}),
+        addItem: (listName, newItem, quantity): IItems => {
             if (isValidName(newItem)) {
-                const temp: IItems = {...items}
+                const temp: IItems = {...listController.getListItems(listName)}
                 temp[newItem] = ((temp[newItem] ? temp[newItem] : 0) + parseInt(String(quantity)))
-                setItems(temp)
+                setItems(temp, listName)
             }
-            return {...items}
+            return {...listController.getListItems(listName)}
         },
-        removeItem: (item, wholeItem): IItems => {
-            const temp: IItems = {...items}
+        removeItem: (listName, item, wholeItem): IItems => {
+            const temp: IItems = {...listController.getListItems(listName)}
             temp[item] <= 1 || wholeItem ? delete temp[item] : temp[item]--
-            setItems(temp)
-            return {...items}
+            setItems(temp, listName)
+            return {...listController.getListItems(listName)}
         },
-        changeItem: (oldName, newName): IItems => {
+        changeItem: (listName, oldName, newName): IItems => {
             if (isValidName(newName) && !(newName === oldName)) {
-                const temp: IItems = {...items}
+                const temp: IItems = {...listController.getListItems(listName)}
                 temp[newName] = temp[oldName]
                 delete temp[oldName]
-                setItems(temp)
+                setItems(temp, listName)
             }
-            return {...items}
+            return {...listController.getListItems(listName)}
         }
     };
 }

@@ -5,7 +5,7 @@ export default function NavBar() {
     return (
         <div>
             <Link to={"/"}>
-                <input type="button" value={"Home"}/>
+                <input type="button" value={"Lists"}/>
             </Link>
         </div>
     )
