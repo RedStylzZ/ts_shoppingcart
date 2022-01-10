@@ -1,7 +1,6 @@
 import {ILists, IItems, STORAGE_KEY, IListController} from "../models/ShoppingItems";
 
-
-export default function listController(): IListController {
+export default function ListController(): IListController {
     let listItems: ILists = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
 
     const setList = (value: ILists) => {
@@ -11,18 +10,16 @@ export default function listController(): IListController {
 
     return {
         getLists: () => ({...listItems}),
-        getListItems: (list: string) => ({...listItems[list]}),
-        setListItems: (list: string, items: IItems) => {
+        getListItems: (listName: string) => ({...listItems[listName]}),
+        setListItems: (listName: string, items: IItems) => {
             const temp = {...listItems}
-            console.log("SetItems", temp)
-            temp[list] = items
-            console.log("SetItems", temp)
+            temp[listName] = items
             setList(temp)
-            return {...listItems[list]}
+            return {...listItems[listName]}
         },
-        addList: (name: string): ILists => {
+        addList: (listName: string): ILists => {
             const temp = {...listItems}
-            temp[name] = {}
+            temp[listName] = {}
             setList(temp)
             return {...listItems}
         },

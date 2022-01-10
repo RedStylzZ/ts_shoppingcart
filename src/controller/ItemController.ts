@@ -1,8 +1,7 @@
-import {IHomeController, IItems, IListController} from "../models/ShoppingItems";
+import {IItemController, IItems, IListController} from "../models/ShoppingItems";
 
-export default function homeController(props: IListController): IHomeController {
+export default function ItemController(listController: IListController): IItemController {
     const re: RegExp = new RegExp(/\s/g)
-    const listController = props
 
     const setItems = (value: IItems, listName: string) => {
         listController.setListItems(listName, value)
